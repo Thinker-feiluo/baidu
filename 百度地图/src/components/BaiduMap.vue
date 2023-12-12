@@ -9,7 +9,9 @@
         <!-- 城市搜索 -->
         <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
         <!-- 标点 dragging 是否允许拖拽 -->
-        <bm-marker :position="{ lng: 116.404, lat: 39.915 }" :dragging="true"></bm-marker>
+        <bm-marker :position="markerPosition" :dragging="true" @click="handleClick"></bm-marker>
+        <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="false" :autoLocation="false" :locationIcon="false"
+            @locationSuccess="handelRes"></bm-geolocation>
     </baidu-map>
 </template>
 
@@ -25,6 +27,20 @@ const center = reactive({
     lat: 39.915
 })
 
+const markerPosition = reactive({
+    lng: 116.404,
+    lat: 39.915
+})
+
+const handleClick = (type) => {
+    alert(`这个是您当前的经纬度: ${type.point.lng},${type.point.lat}`)
+}
+
+const handelRes = (point) => {
+    markerPosition.lat = point.point.lat
+    markerPosition.lng = point.point.lng
+    console.log(markerPosition.lat, markerPosition.lng);
+}
 </script>
 
 <style scoped>

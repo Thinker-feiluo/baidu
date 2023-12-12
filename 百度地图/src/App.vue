@@ -1,14 +1,18 @@
 <template>
-  <baidu-map class="bm-view" :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
-  </baidu-map>
+  <div>
+    <BaiduMap></BaiduMap>
+  </div>
 </template>
- 
-<script setup>
 
+<script setup>
+import BaiduMap from './components/BaiduMap.vue'
 </script>
-<style scoped>
-.bm-view {
+
+<style>
+html,
+body {
   width: 100%;
-  height: 80%;
+  height: 100%;
+  overflow: hidden;
 }
 </style>
